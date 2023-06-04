@@ -127,6 +127,35 @@
 </footer>
 <script src="./assets/script.js"></script>
 
+<script type="text/javascript">
+	// Récupérer les éléments du DOM
+const banner = document.getElementById('banner');
+const bannerImg = document.querySelector('.banner-img');
+const arrowLeft = document.querySelector('.arrow_left');
+const arrowRight = document.querySelector('.arrow_right');
+
+let currentSlide = 0;
+
+// Fonction pour afficher le slide actuel
+function modifySlide() {
+    bannerImg.src = `./assets/images/slideshow/${slides[currentSlide].image}`;
+
+	const pTag = document.querySelector('#banner p');
+    pTag.innerHTML = `${slides[currentSlide].tagLine}`;
+}
+
+// Event listener avec fonction flechée : bouton droite
+arrowRight.addEventListener('click', () => {
+    currentSlide++;
+    if (currentSlide >= slides.length) {
+        currentSlide = 0;
+    }
+    modifySlide();
+});
+
+
+</script>
+
 
 
 </body>
