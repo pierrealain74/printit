@@ -133,17 +133,21 @@ const banner = document.getElementById('banner');
 const bannerImg = document.querySelector('.banner-img');
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
+const pDots = document.querySelector('.dots');
 
 let currentSlide = 0;
 
 // Fonction pour afficher le slide actuel
 function modifySlide() {
 	console.log('currentslide dans modifyslide:', currentSlide);
-    bannerImg.src = `./assets/images/slideshow/${slides[currentSlide].image}`;
+	bannerImg.src = './assets/images/slideshow/' + slides[currentSlide].image;
+    //bannerImg.src = `./assets/images/slideshow/${slides[currentSlide].image}`;
+	
 
 
 	const pTag = document.querySelector('#banner p');
-    pTag.innerHTML = `${slides[currentSlide].tagLine}`;
+	pTag.innerHTML = slides[currentSlide].tagLine;
+    //pTag.innerHTML = `${slides[currentSlide].tagLine}`;
 }
 
 // Créer le numéro de slide avec Event listener : bouton droite
@@ -161,12 +165,8 @@ arrowRight.addEventListener(
 arrowLeft.addEventListener(
 	'click', () => {
 		currentSlide--;
-		console.log('currentSlide:', currentSlide);
-    	console.log('slides.length:', slides.length);
 		if(currentSlide < 0){
-			currentSlide = slides.length;
-			console.log('slides.length dans le if:', slides.length);
-			console.log('currentslide dans le if:', currentSlide);
+			currentSlide = slides.length -1;
 		}
 		modifySlide();
 }
