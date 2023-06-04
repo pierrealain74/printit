@@ -135,11 +135,38 @@ const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
 const pDots = document.querySelector('.dots');
 
+// Créer un point pour chaque slide
+slides.forEach((slide, index) => {
+	
+	// Créer un élément span pour représenter un point
+	const dot = document.createElement('span');
+
+	// Ajouter une classe au point pour le style CSS
+	dot.classList.add('dot');
+
+	// Ajouter un attribut data-index pour stocker l'index du slide associé
+	// avec la methode setAttribute
+	dot.setAttribute('data-index', index);
+	//console.log('valeur de index : ', index);
+
+	// Ajouter un gestionnaire d'événement pour changer de slide lorsque le point est cliqué
+	dot.addEventListener('click', (event) => {
+	const clickedDotIndex = parseInt(event.target.getAttribute('data-index'));
+	currentSlide = clickedDotIndex;
+	
+	modifySlide();
+	}); 
+
+	// Ajouter le point à la div contenant les points
+	pDots.appendChild(dot);
+
+});
+
 let currentSlide = 0;
 
 // Fonction pour afficher le slide actuel
 function modifySlide() {
-	console.log('currentslide dans modifyslide:', currentSlide);
+	//console.log('currentslide dans modifyslide:', currentSlide);
 	bannerImg.src = './assets/images/slideshow/' + slides[currentSlide].image;
     //bannerImg.src = `./assets/images/slideshow/${slides[currentSlide].image}`;
 	
