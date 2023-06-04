@@ -138,21 +138,39 @@ let currentSlide = 0;
 
 // Fonction pour afficher le slide actuel
 function modifySlide() {
+	console.log('currentslide dans modifyslide:', currentSlide);
     bannerImg.src = `./assets/images/slideshow/${slides[currentSlide].image}`;
+
 
 	const pTag = document.querySelector('#banner p');
     pTag.innerHTML = `${slides[currentSlide].tagLine}`;
 }
 
-// Event listener avec fonction flechée : bouton droite
-arrowRight.addEventListener('click', () => {
+// Créer le numéro de slide avec Event listener : bouton droite
+arrowRight.addEventListener(
+	'click', () => {
     currentSlide++;
-    if (currentSlide >= slides.length) {
+    if (currentSlide >= slides.length) {//si on arrive au dernier slide
         currentSlide = 0;
     }
     modifySlide();
-});
+}
+);
 
+// bouton gauche
+arrowLeft.addEventListener(
+	'click', () => {
+		currentSlide--;
+		console.log('currentSlide:', currentSlide);
+    	console.log('slides.length:', slides.length);
+		if(currentSlide < 0){
+			currentSlide = slides.length;
+			console.log('slides.length dans le if:', slides.length);
+			console.log('currentslide dans le if:', currentSlide);
+		}
+		modifySlide();
+}
+);
 
 </script>
 
