@@ -1,7 +1,7 @@
 const slides = [
 	{
 		"image":"slide1.jpg",
-		"tagLine":"Impressions tous formats <span>en boutique et en ligne</span>"
+		"tagLine": "Impressions tous formats <span>en boutique et en ligne</span>"
 	},
 	{
 		"image":"slide2.jpg",
@@ -67,6 +67,7 @@ function modifySlide() {
 	
 	const pTag = document.querySelector('#banner p');
 	pTag.innerHTML = slides[currentSlide].tagLine;//inner permet de garder les elts html comme span
+	bannerImg.alt = pTag.textContent;// Integre le pTag dans le alt img
 
 
 	// Supprimer la classe 'dot_selected' de tous les points
@@ -74,8 +75,8 @@ function modifySlide() {
     dots.forEach(dot => dot.classList.remove('dot_selected'));
 
     // Ajouter la classe 'dot_selected' au point correspondant au slide actuel
-	const currentDot = document.querySelector('.dots span[data-index="' + currentSlide + '"]');
-    currentDot.classList.add('dot_selected');
+	const currentDot = document.querySelector('.dots span[data-index="' + currentSlide + '"]'); // définir le dot actuel = currentslide
+    currentDot.classList.add('dot_selected'); // lui affecter la class selected
 }
 
 // Créer le numéro de slide avec Event listener : bouton droite

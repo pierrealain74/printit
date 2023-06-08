@@ -49,17 +49,72 @@
 		<img class="footer-logo" src="./assets/images/logo.png" alt="Print it ! Impressions d'entreprises" >
 	</div>
 </footer>
-<script src="./assets/script.js"></script>
+<script src="./assets/script-test.js"></script>
 
 <script type="text/javascript">
 	// Récupérer les éléments du DOM
 const banner = document.getElementById('banner');
 const bannerImg = document.querySelector('.banner-img');
+const arrowRight = document.querySelector('.arrow.arrow_right');
+const arrowLeft = document.querySelector('.arrow.arrow_left');
+const pDots = document.querySelector('.dots');
 
-    //Changer l'image slider
+let currentSlide = 0;
+
+slides.forEach((index) => {
+
+	// Créer un élément span pour représenter un point
+	const spanDot = document.createElement('span');
+
+		
+	spanDot.classList.add('dot');//ajout une classe dot par defaut
 
 
+	// Ajoute dynamiquement chaque point
+	pDots.appendChild(spanDot);
 
+});
+
+//Fleche interactive de droite
+arrowRight.addEventListener('click', () => {
+
+	currentSlide++;
+	//console.log('current slide apres ++', currentSlide);	
+
+	if(currentSlide > slides.length -1) {
+		currentSlide = 0;
+		//console.log('current slide apres 0', currentSlide);	
+	}
+	changeSlide();
+
+});
+
+//Fleche interactive de gauche
+arrowLeft.addEventListener('click', () => {
+
+currentSlide--;
+//console.log('current slide apres --', currentSlide);	
+
+if(currentSlide < 0) {
+	currentSlide = slides.length -1;
+	//console.log('current slide apres 0', currentSlide);	
+}
+changeSlide();
+
+});
+
+function changeSlide(){
+	
+bannerImg.src = './assets/images/slideshow/' + slides[currentSlide].image;
+console.log('current slide dans changeSlide', currentSlide);
+
+const pBanner = document.querySelector('#banner p');
+pBanner.innerHTML = slides[currentSlide].tagLine;
+
+console.log('tagline : ', slides[currentSlide].tagLine);
+
+
+}
 
 
 
